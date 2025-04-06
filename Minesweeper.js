@@ -2,12 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Board_1 = require("./Board");
 var Minesweeper = /** @class */ (function () {
-    function Minesweeper() {
-        this.rows = 8;
-        this.cols = 8;
-        this.numMines = 10;
-        this.first = { row: 3, col: 3 };
-        this.board = new Board_1.Board(this.rows, this.cols, this.numMines);
+    function Minesweeper(rows, cols, numMines) {
+        this.board = new Board_1.Board(rows, cols, numMines);
     }
     Minesweeper.prototype.print = function () {
         console.log("Board:");
@@ -15,13 +11,15 @@ var Minesweeper = /** @class */ (function () {
         console.log("Mines:");
         console.log(this.board.getMines());
     };
+    Minesweeper.prototype.placeMines = function (firstR, firstC) {
+        this.board.placeMine(firstR, firstC);
+    };
     return Minesweeper;
 }());
 ;
-var game = new Minesweeper();
+//usage
+var game = new Minesweeper(8, 8, 10);
 game.print();
-// Player clicks the cell at (3, 3)
-//game.generateBoard({ row: 3, col: 3 });
-// Output the board
-//console.log("Generated Board:");
-//console.table(game.board.grid);
+console.log("placing mines now");
+game.placeMines(3, 3);
+game.print();

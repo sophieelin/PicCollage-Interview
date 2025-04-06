@@ -1,11 +1,8 @@
 import { Board } from "./Board";
 class Minesweeper{
-    rows = 8;
-    cols = 8;
-    numMines = 10;
     board: Board;
-    constructor(){
-        this.board = new Board(this.rows, this.cols, this.numMines);
+    constructor(rows: number, cols: number, numMines: number){
+        this.board = new Board(rows, cols, numMines);
     }
     print(){
         console.log("Board:");
@@ -13,18 +10,14 @@ class Minesweeper{
         console.log("Mines:");
         console.log(this.board.getMines());
     }   
-    placeMines(first: number[]){
-        this.board.placeMines(first)
+    placeMines(firstR:number, firstC: number){
+        this.board.placeMine(firstR,firstC);
     }
 };
-const game = new Minesweeper();
-const first = [3,3];
-game.placeMines(first)
-game.print()
 
-// Player clicks the cell at (3, 3)
-//game.generateBoard({ row: 3, col: 3 });
-
-// Output the board
-//console.log("Generated Board:");
-//console.table(game.board.grid);
+//usage
+const game = new Minesweeper(8, 8, 10);
+game.print();
+console.log("placing mines now")
+game.placeMines(3, 3);
+game.print();
