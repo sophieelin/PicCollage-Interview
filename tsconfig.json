@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2015",          
+    "module": "commonjs",         
+    "strict": true,              
+    "esModuleInterop": true,     
+    "skipLibCheck": true,         
+    "forceConsistentCasingInFileNames": true, 
+    "lib": ["es2015", "dom"]    
+  },
+"include": [
+  "/Board.ts" 
+]
+}
