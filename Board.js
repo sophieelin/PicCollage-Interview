@@ -8,6 +8,10 @@ var Board = /** @class */ (function () {
             console.log("Error: Too many mines for the grid size");
             return;
         }
+        else if (mines <= 0) {
+            console.log("Error: Number of mines must be greater than 0.");
+            return;
+        }
         this.rows = rows;
         this.cols = cols;
         this.numMines = mines;
@@ -43,11 +47,22 @@ var Board = /** @class */ (function () {
     };
     //place the mines 
     Board.prototype.placeMine = function (firstR, firstC) {
+        //edge cases
         //check if placed Mines before finished game so not to accidentally replace the current progress 
-        //also check if outside bounds
-        if (this.placedMines === true || firstR < 0 || firstR > this.rows || firstC < 0 || firstC > this.cols) {
+        if (this.placedMines === true) {
+            console.log("Error: Already placed Mines. Restart the game to replace.");
             return;
         }
+        //also check if outside bounds
+        if (firstR < 0 || firstR >= this.rows || firstC < 0 || firstC >= this.cols) {
+            console.log("Error: First Clicked position not on board");
+            return;
+        }
+        if (this.rows * this.cols === 1 || this.rows * this.cols === 0) {
+            console.log("Only one space or no space in grid: no mines");
+            return;
+        }
+        //start thelogic 
         this.placedMines = true;
         var n = firstR; //row coordinate of first clicked square
         var m = firstC; //col coordinate of first clicked square
@@ -70,6 +85,11 @@ var Board = /** @class */ (function () {
             //add to board
             this.board[r][c] = "X";
         }
+    };
+    Board.prototype.restart = function () {
+        this.numMines = 0;
+        this.placedMines = false;
+        this.mines = [];
     };
     return Board;
 }());
