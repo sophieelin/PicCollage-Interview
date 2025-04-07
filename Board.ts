@@ -1,3 +1,6 @@
+/**
+ * Represents the game board for Minesweeper.
+ */
 export class Board{
     private rows: number;
     private cols: number;
@@ -6,7 +9,14 @@ export class Board{
     //private mines: Set<string>; for ts e2015 or later
     private mines: string[];
     private placedMines: boolean; //ensures that mines can only be placed once at the start 
-     
+    
+    
+    /**
+     * Creates a new board with the specified dimensions and number of mines
+     * @param rows - Number of rows
+     * @param cols - Number of columns
+     * @param mines - Number of mines
+     */
     constructor (rows: number, cols: number, mines: number){
         //edge case: more mines than spaces
         if (mines>= rows*cols){
@@ -34,7 +44,11 @@ export class Board{
             }
         }
     }
-    //print out the board
+    
+
+    /**
+     * Prints the current state of the board
+     */
     toString(){
         let temp: string = "";
         for (let i = 0; i < this.rows;i++){
@@ -45,14 +59,22 @@ export class Board{
             temp = "";
         }
     }
-    //return number of mines
+     /**
+     * Returns the number of mines on the board
+     * @returns Number of mines 
+     */
     getMines(){
         if (this.placedMines){
             return this.numMines;
         }
         return 0;
     }
-    //place the mines 
+    
+      /**
+     * Randomly places the given number of mines on the board, avoiding the first clicked cell
+     * @param firstR - Row index of the first clicked cell
+     * @param firstC - Column index of the first clicked cell
+     */
     placeMine(firstR: number, firstC:number){
         //edge cases
         //check if placed Mines before finished game so not to accidentally replace the current progress 
@@ -97,6 +119,10 @@ export class Board{
             this.board[r][c] = "X";
         }
     }
+
+     /**
+     * Resets the game board state for a new game
+     */
     restart(){
         this.numMines = 0;
         this.placedMines = false; 
