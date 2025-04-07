@@ -17,6 +17,7 @@ var Board = /** @class */ (function () {
         this.numMines = mines;
         this.placedMines = false;
         this.mines = [];
+        //this.mines = new Set<string>();
         //initalize board to be row x col of 0's
         //this.board =  new Array(rows).fill(null).map(() => new Array(cols).fill(0)); current ts version doesn't work
         this.board = [];
@@ -77,9 +78,10 @@ var Board = /** @class */ (function () {
                 //console.log(r +" " +c)
             } while ( //keep running when these issues are here
             (r === n && c === m) || // don't place a mine in the first clicked cell
-                this.mines.indexOf("".concat(r, ",").concat(c)) !== -1 // don't place a mine in the same spot
+                this.mines.indexOf("".concat(r, ",").concat(c)) !== -1 // don't place a mine in the same spot this.mines.has(`${r},${c}`) 
             );
             //add to mines string set
+            //this.mines.add(`${r},${c}`);
             this.mines.push("".concat(r, ",").concat(c));
             //console.log(this.mines[0])
             //add to board
@@ -90,6 +92,7 @@ var Board = /** @class */ (function () {
         this.numMines = 0;
         this.placedMines = false;
         this.mines = [];
+        //this.mines = new Set<string>();
     };
     return Board;
 }());
