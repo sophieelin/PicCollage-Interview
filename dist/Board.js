@@ -92,4 +92,8 @@ var Board = /** @class */ (function () {
         this.numMines = 0;
         this.placedMines = false;
         this.mines = [];
-        //this.
+        //this.mines = new Set<string>();
+    };
+    return Board;
+}());
+exports.Board = Board;
